@@ -9,6 +9,13 @@ const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
+const cors = require('cors');
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 
 const user = process.env.MONGO_USER;
 const pass = process.env.MONGO_PASS;
