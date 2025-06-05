@@ -1,31 +1,23 @@
 require('dotenv').config();
-
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); 
+const cors = require('cors');
+
 const app = express();
 const PORT = 5000;
 
-app.use(cors({
-  origin: 'http://localhost:3000',  
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],  
-  allowedHeaders: ['Content-Type', 'Authorization'],     
-}));
+app.use(cors());
+app.use(express.json());
 
-const user = process.env.MONGO_USER;
-const pass = process.env.MONGO_PASS;
-const dbName = process.env.MONGO_DB;
-const cluster = process.env.MONGO_CLUSTER;
-const appName = process.env.MONGO_APPNAME
+const { MONGO_USER, MONGO_PASS, MONGO_DB, MONGO_CLUSTER, MONGO_APPNAME } = process.env;
 
-const uri = `mongodb+srv://${user}:${pass}@${cluster}/${dbName}?retryWrites=true&w=majority&appName=${appName}`;
-
-console.log(uri)
+const uri = `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@${MONGO_CLUSTER}/${MONGO_DB}?retryWrites=true&w=majority&appName=${MONGO_APPNAME}`;
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-})
+}).then(() => console.log("MongoDB connected"))
+  .catch(err => console.error("MongoDB connection failed:", err));
 
 const visitorSchema = new mongoose.Schema({
   ip: String,
@@ -39,7 +31,15 @@ const visitorSchema = new mongoose.Schema({
   longitude: String
 });
 
+const postSchema = new mongoose.Schema({
+  username: String,
+  text: String,
+  imageUrl: String,
+  createdAt: { type: Date, default: Date.now }
+});
+
 const Visitor = mongoose.model('Visitor', visitorSchema, 'ethan-visitor-info');
+const Post = mongoose.model('Post', postSchema, 'ethan-imageboard-posts');
 
 app.post('/api/visitors', async (req, res) => {
   try {
@@ -50,15 +50,6 @@ app.post('/api/visitors', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-
-const postSchema = new mongoose.Schema({
-  username: String,
-  text: String,
-  imageUrl: String,
-  createdAt: { type: Date, default: Date.now }
-});
-
-const Post = mongoose.model('Post', postSchema, 'ethan-imageboard-posts');
 
 app.get('/api/posts', async (req, res) => {
   try {
@@ -79,6 +70,10 @@ app.post('/api/posts', async (req, res) => {
   }
 });
 
+app.get('/api/test-cors', (req, res) => {
+  res.json({ message: 'CORS working' });
+});
+
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });
