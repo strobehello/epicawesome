@@ -40,7 +40,7 @@ function VisitorInfo() {
       <ul>Country: {info.country}</ul>
       <ul>Region: {info.region}</ul>
       <ul>City: {info.city}</ul>
-      <ul>Latititude: {info.latititude}</ul>
+      <ul>Latitude: {info.latitude}</ul>
       <ul>Longitude: {info.longitude}</ul>
       <ul>ISP: {info.isp}</ul>
       <ul>Timezone: {info.timezone}</ul>
