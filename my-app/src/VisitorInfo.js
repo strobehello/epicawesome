@@ -14,6 +14,8 @@ function VisitorInfo() {
                 country: data.country_name,
                 isp: data.org,
                 timezone: data.timezone,
+                latitude: data.latitude,
+                longitude: data.longitude,
                 browser: navigator.userAgent,
             };
 
@@ -35,9 +37,11 @@ function VisitorInfo() {
     <div>
       <h2>He is coming to kill you NOW:</h2>
       <ul>IP: {info.ip}</ul>
-      <ul>City: {info.city}</ul>
-      <ul>Region: {info.region}</ul>
       <ul>Country: {info.country}</ul>
+      <ul>Region: {info.region}</ul>
+      <ul>City: {info.city}</ul>
+      <ul>Latititude: {info.latititude}</ul>
+      <ul>Longitude: {info.longitude}</ul>
       <ul>ISP: {info.isp}</ul>
       <ul>Timezone: {info.timezone}</ul>
       <ul>Browser: {info.browser}</ul>

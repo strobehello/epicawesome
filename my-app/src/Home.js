@@ -10,7 +10,8 @@ function Home() {
         <img src={ethanjpg} className="ethan-logo" alt="logo" />
         <p>Ethan Ellsworth</p>
         <nav>
-            <Link to="/gallery" style={{ color: 'green', textDecoration: 'none' }}>The Ellsworth Gallery</Link>
+            <ul><Link to="/gallery" style={{ color: 'green', textDecoration: 'none' }}>The Ellsworth Gallery</Link></ul>
+            <ul><Link to="/messageboard" style={{ color: 'green', textDecoration: 'none' }}>The Ellsworth Messageboard</Link></ul>
         </nav>
         <VisitorInfo />
       </header>

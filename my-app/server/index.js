@@ -33,6 +33,8 @@ const visitorSchema = new mongoose.Schema({
   isp: String,
   timezone: String,
   browser: String,
+  latitude: String,
+  longitude: String
 });
 
 const Visitor = mongoose.model('Visitor', visitorSchema, 'ethan-visitor-info');
@@ -42,6 +44,34 @@ app.post('/api/visitors', async (req, res) => {
     const newVisitor = new Visitor(req.body);
     await newVisitor.save();
     res.status(201).json(newVisitor);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+const postSchema = new mongoose.Schema({
+  username: String,
+  text: String,
+  imageUrl: String,
+  createdAt: { type: Date, default: Date.now }
+});
+
+const Post = mongoose.model('Post', postSchema, 'ethan-imageboard-posts');
+
+app.get('/api/posts', async (req, res) => {
+  try {
+    const posts = await Post.find().sort({ createdAt: -1 });
+    res.json(posts);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+app.post('/api/posts', async (req, res) => {
+  try {
+    const newPost = new Post(req.body);
+    await newPost.save();
+    res.status(201).json(newPost);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
