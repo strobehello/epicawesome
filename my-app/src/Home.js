@@ -1,5 +1,5 @@
 import ethanjpg from './ethan.jpg';
-import VisitorInfo from './VisitorInfo';
+import VisitorInfo from './VisitorInfo.js';
 import { Link } from 'react-router-dom';
 import './App.css';
 
