@@ -1,19 +1,16 @@
-import ethanjpg from './ethan.jpg';
-import VisitorInfo from './VisitorInfo.js'; 
-import './App.css';
+// App.js
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import Gallery from './Gallery';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ethanjpg} className="ethan-logo" alt="logo" />
-        <p>
-          Ethan Ellsworth
-        </p>
-
-        <VisitorInfo />
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/gallery" element={<Gallery />} />
+      </Routes>
+    </Router>
   );
 }
 
