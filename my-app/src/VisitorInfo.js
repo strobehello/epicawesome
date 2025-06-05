@@ -33,7 +33,7 @@ function VisitorInfo() {
 
   return (
     <div>
-      <h2>He is coming to kill you:</h2>
+      <h2>He is coming to kill you NOW:</h2>
       <ul>IP: {info.ip}</ul>
       <ul>City: {info.city}</ul>
       <ul>Region: {info.region}</ul>
