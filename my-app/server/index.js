@@ -2,8 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
-
+const cors = require('cors'); 
 const app = express();
 const PORT = 5000;
 
@@ -14,8 +13,6 @@ app.use(cors({
 }));
 
 app.use(express.json());
-const cors = require('cors');
-
 const user = process.env.MONGO_USER;
 const pass = process.env.MONGO_PASS;
 const dbName = process.env.MONGO_DB;
