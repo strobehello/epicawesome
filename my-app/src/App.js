@@ -1,4 +1,5 @@
 import ethanjpg from './ethan.jpg';
+import VisitorInfo from './VisitorInfo.js'; 
 import './App.css';
 
 function App() {
@@ -9,6 +10,8 @@ function App() {
         <p>
           Ethan Ellsworth
         </p>
+
+        <VisitorInfo />
       </header>
     </div>
   );
