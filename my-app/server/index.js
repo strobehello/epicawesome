@@ -12,7 +12,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],     
 }));
 
-app.use(express.json());
 const user = process.env.MONGO_USER;
 const pass = process.env.MONGO_PASS;
 const dbName = process.env.MONGO_DB;
