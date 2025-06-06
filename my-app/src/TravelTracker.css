@@ -1,0 +1,341 @@
+@keyframes loading {
+    0% { left: -30%; }
+    100% { left: 100%; }
+  }
+  
+  .travel-tracker {
+    background-color: #000000;
+    color: #ffffff;
+    min-height: 100vh;
+    font-family: 'Monaco', 'Lucida Console', monospace;
+    font-size: 13px;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(0, 255, 65, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 68, 68, 0.03) 0%, transparent 50%);
+  }
+  
+  .loading-screen {
+    background-color: #0a0a0a;
+    color: #00ff41;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Monaco', 'Lucida Console', monospace;
+    font-size: 14px;
+  }
+  
+  .loading-content {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .loading-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .loading-bar {
+    width: 300px;
+    height: 4px;
+    background-color: #333;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .loading-progress {
+    width: 30%;
+    height: 100%;
+    background-color: #00ff41;
+    animation: loading 2s ease-in-out infinite;
+    position: absolute;
+  }
+  
+  .loading-text {
+    margin-top: 15px;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  
+  .header {
+    padding: 20px;
+    border-bottom: 1px solid #333;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-left .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+  
+  .header-left .subtitle {
+    color: #888;
+    font-size: 11px;
+  }
+  
+  .header-right {
+    text-align: right;
+  }
+  
+  .header-right .status {
+    color: #4aa3ff;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .header-right .timestamp {
+    color: #888;
+    font-size: 11px;
+  }
+  
+  .stats-bar {
+    display: flex;
+    border-bottom: 1px solid #333;
+    background-color: #0a0a0a;
+  }
+  
+  .stat-item {
+    flex: 1;
+    padding: 15px 20px;
+    text-align: center;
+  }
+  
+  .stat-item:not(:last-child) {
+    border-right: 1px solid #333;
+  }
+  
+  .stat-value {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .stat-label {
+    font-size: 10px;
+    color: #666;
+  }
+  
+  .main-content {
+    display: flex;
+    height: calc(100vh - 140px);
+  }
+  
+  .left-panel {
+    width: 60%;
+    border-right: 1px solid #333;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .panel-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #333;
+    background-color: #0d0d0d;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ccc;
+  }
+  
+  .trips-list {
+    flex: 1;
+    overflow: auto;
+  }
+  
+  .trip-item {
+    padding: 20px;
+    border-bottom: 1px solid #1a1a1a;
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+    position: relative;
+  }
+  
+  .trip-item:hover {
+    background-color: #111;
+  }
+  
+  .trip-item.selected {
+    background-color: #1a1a1a;
+  }
+  
+  .trip-item.selected:hover {
+    background-color: #1a1a1a;
+  }
+  
+  .status-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+  }
+  
+  .trip-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  
+  .trip-title {
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .trip-status {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+  
+  .trip-route {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .location-info {
+    text-align: center;
+    flex: 1;
+  }
+  
+  .location-code {
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .location-city {
+    color: #888;
+    font-size: 11px;
+  }
+  
+  .location-time {
+    color: #4aa3ff;
+    font-size: 11px;
+  }
+  
+  .route-icon {
+    color: #666;
+    margin: 0 15px;
+    font-size: 16px;
+  }
+  
+  .trip-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #666;
+  }
+  
+  .right-panel {
+    width: 40%;
+    background-color: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .details-content {
+    padding: 20px;
+    flex: 1;
+    overflow: auto;
+  }
+  
+  .detail-section {
+    margin-bottom: 25px;
+  }
+  
+  .detail-label {
+    color: #888;
+    font-size: 11px;
+    margin-bottom: 5px;
+  }
+  
+  .detail-value {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .detail-secondary {
+    color: #666;
+    font-size: 11px;
+    margin-top: 3px;
+  }
+  
+  .detail-highlight {
+    color: #4aa3ff;
+    font-size: 12px;
+  }
+  
+  .detail-success {
+    color: #00ff41;
+    font-size: 11px;
+    margin-top: 3px;
+  }
+  
+  .detail-warning {
+    color: #ffa500;
+    font-size: 11px;
+    margin-top: 3px;
+  }
+  
+  .detail-danger {
+    color: #ff4444;
+    font-size: 11px;
+    margin-top: 3px;
+  }
+  
+  .notes-section {
+    background-color: #111;
+    border: 1px solid #333;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+  }
+  
+  .notes-title {
+    color: #4aa3ff;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .notes-content {
+    color: #ccc;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  
+  .empty-details {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 12px;
+  }
+  
+  /* Status Colors */
+  .status-completed { background-color: #00ff4120; color: #00ff41; }
+  .status-confirmed { background-color: #ffa50020; color: #ffa500; }
+  .status-scheduled { background-color: #4aa3ff20; color: #4aa3ff; }
+  .status-cancelled { background-color: #ff444420; color: #ff4444; }
+  .status-in-progress { background-color: #88888820; color: #888; }
+  
+  .indicator-completed { background-color: #00ff41; }
+  .indicator-confirmed { background-color: #ffa500; }
+  .indicator-scheduled { background-color: #4aa3ff; }
+  .indicator-cancelled { background-color: #ff4444; }
+  .indicator-in-progress { background-color: #888; }
