@@ -18,6 +18,8 @@ function VisitorInfo() {
           longitude: data.longitude,
           browser: navigator.userAgent,
         };
+        
+        console.log(info);
 
         setInfo(info);
 
@@ -33,11 +35,11 @@ function VisitorInfo() {
       .catch(err => console.error('fetch error:', err));
   }, []);
 
-  if (!info) return <p>Loading visitor info...</p>;
+  if (!info) return <p>Loading...</p>;
 
   return (
     <div>
-      <h2>Your Visit Info</h2>
+      <h2>He is coming to kill you NOW</h2>
       <ul><strong>IP:</strong> {info.ip}</ul>
       <ul><strong>Country:</strong> {info.country}</ul>
       <ul><strong>Region:</strong> {info.region}</ul>
@@ -47,6 +49,7 @@ function VisitorInfo() {
       <ul><strong>ISP:</strong> {info.isp}</ul>
       <ul><strong>Timezone:</strong> {info.timezone}</ul>
       <ul><strong>Browser:</strong> {info.browser}</ul>
+      <h2>Low-key you are fucked</h2>
     </div>
   );
 }
