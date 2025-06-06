@@ -6,7 +6,13 @@ const cors = require('cors');
 const app = express();
 const PORT = 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const { MONGO_USER, MONGO_PASS, MONGO_DB, MONGO_CLUSTER, MONGO_APPNAME } = process.env;
@@ -75,5 +81,5 @@ app.get('/api/test-cors', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
