@@ -25,7 +25,6 @@ function MessageBoard() {
     }
 
     try {
-
       const newPost = { username: safeUsername, text, imageUrl };
       const res = await axios.post('http://localhost:5000/api/posts', newPost);
       setMessages([res.data, ...messages]);
