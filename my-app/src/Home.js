@@ -13,6 +13,7 @@ function Home() {
             <ul><Link to="/gallery" style={{ color: 'green', textDecoration: 'none' }}>The Ellsworth Gallery</Link></ul>
             <ul><Link to="/messageboard" style={{ color: 'green', textDecoration: 'none' }}>The Ellsworth Messageboard</Link></ul>
             <ul><Link to="/travel" style={{ color: 'green', textDecoration: 'none' }}>The Ellsworth Travels</Link></ul>
+            <ul><Link to="/wordcloud" style={{ color: 'green', textDecoration: 'none' }}>Ethan's Word Cloud</Link></ul>
         </nav>
         <VisitorInfo />
       </header>
