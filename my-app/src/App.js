@@ -4,6 +4,7 @@ import Gallery from './Gallery';
 import MessageBoard from './MessageBoard';
 import TravelTracker from './TravelTracker';
 import WordCloud from './WordCloud';
+import EllsworthTerminal from './EllsworthTerminal';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/messageboard" element={<MessageBoard />} />
         <Route path='/travel' element={<TravelTracker />} />
         <Route path="/wordcloud" element={<WordCloud />} />
+        <Route path="/terminal" element={<EllsworthTerminal />} />
       </Routes>
     </Router>
   );

@@ -133,6 +133,22 @@ const WordCloud = () => {
       .attr('height', height)
       .classed('wordcloud-svg', true);
 
+    // Create tooltip
+    const tooltip = d3.select('body')
+      .append('div')
+      .style('position', 'absolute')
+      .style('visibility', 'hidden')
+      .style('background-color', '#001100')
+      .style('border', '1px solid #00ff41')
+      .style('padding', '8px 12px')
+      .style('font-family', 'Monaco, "Lucida Console", monospace')
+      .style('font-size', '11px')
+      .style('color', '#00ff41')
+      .style('border-radius', '2px')
+      .style('box-shadow', '0 0 10px rgba(0, 255, 65, 0.3)')
+      .style('pointer-events', 'none')
+      .style('z-index', '1000');
+
     const colorScale = d3.scaleOrdinal()
       .domain(d3.range(wordData.length))
       .range(['#00ff41', '#40ff00', '#80ff40', '#b3ff66', '#ccff99', '#ffffff', '#e6ffe6']);
@@ -142,7 +158,7 @@ const WordCloud = () => {
       .domain([1, maxFreq])
       .range([16, 70]);
 
-    // Collision detection functions this was retarded
+    // Collision detection functions
     const centerX = width / 2;
     const centerY = height / 2;
     const positions = [];
@@ -181,7 +197,7 @@ const WordCloud = () => {
       });
     };
 
-    // Position words also retarded
+    // Position words
     wordData.forEach((d, i) => {
       const fontSize = fontScale(d.size);
       const isVertical = Math.random() < 0.25;
@@ -263,7 +279,7 @@ const WordCloud = () => {
       .delay((d, i) => i * 40)
       .style('opacity', 0.9);
 
-    // Hover effects
+    // Enhanced hover effects with tooltip
     textElements
       .on('mouseover', function(event, d) {
         d3.select(this)
@@ -272,6 +288,23 @@ const WordCloud = () => {
           .style('opacity', 1)
           .style('font-size', `${d.fontSize * 1.15}px`)
           .style('text-shadow', '0 0 8px currentColor, 0 0 15px currentColor');
+        
+        // Show tooltip with frequency info
+        const percentage = ((d.size / messagesData.length) * 100).toFixed(1);
+        tooltip
+          .style('visibility', 'visible')
+          .html(`
+            <div style="margin-bottom: 4px; font-weight: bold;">"${d.text}"</div>
+            <div style="font-size: 10px; opacity: 0.8;">Used ${d.size} times</div>
+            <div style="font-size: 10px; opacity: 0.8;">${percentage}% of messages</div>
+          `)
+          .style('left', (event.pageX + 15) + 'px')
+          .style('top', (event.pageY - 10) + 'px');
+      })
+      .on('mousemove', function(event) {
+        tooltip
+          .style('left', (event.pageX + 15) + 'px')
+          .style('top', (event.pageY - 10) + 'px');
       })
       .on('mouseout', function(event, d) {
         d3.select(this)
@@ -280,9 +313,20 @@ const WordCloud = () => {
           .style('opacity', 0.9)
           .style('font-size', `${d.fontSize}px`)
           .style('text-shadow', '0 0 3px currentColor');
+        
+        // Hide tooltip
+        tooltip.style('visibility', 'hidden');
       });
 
-  }, [wordData]);
+    // Cleanup function to remove tooltip when component unmounts
+    return () => {
+      d3.select('body').selectAll('div').filter(function() {
+        return d3.select(this).style('position') === 'absolute' && 
+               d3.select(this).style('visibility') === 'hidden';
+      }).remove();
+    };
+
+  }, [wordData, messagesData]);
 
   if (loading) {
     return (
